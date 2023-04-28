@@ -25,7 +25,7 @@ class ControllerBook extends Controller
 
     public function show(Book $book)
     {
-        dd($book);
+        // dd($book);
         return view('books.show', compact('book'));
     }
 
@@ -50,23 +50,22 @@ class ControllerBook extends Controller
 
         $book->save();
 
-        return view('books.show', $book);
+        return to_route('books.show', $book);
     }
 
     public function store(Request $request)
     {
-        $new_book = new Book;
-        $data = $request->all();
 
-        $new_book->titolo = $data['titolo'];
-        $new_book->autore = $data['autore'];
-        $new_book->casa_editrice = $data['casa_editrice'];
-        $new_book->isbn = $data['isbn'];
-        $new_book->copie = $data['copie'];
-        $new_book->pagine = $data['pagine'];
+        $validatedData = $request->validate([
+            'titolo' => 'required|max:255',
+            'autore' => 'required|max:255',
+            'casa_editrice' => 'max:200',
+            'isbn' => 'required|max:13',
+            'copie' => 'numeric|required|min:1',
+            'pagine' => 'numeric|min:1',
+        ]);
 
-        $new_book->save();
-
-        return view('books.show', $new_book);
+        $new_book= Book::create($validatedData);
+        return to_route('books.show',$new_book);
     }
 }

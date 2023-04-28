@@ -1,7 +1,9 @@
 @extends('welcome')
 
 @section('content')
-    index
+    <div>
+        <a href="{{ route('books.create') }}">create</a>
+    </div>
 
     @foreach ($books as $book)
         <div class="card" style="width: 18rem;">
@@ -18,6 +20,4 @@
             </ul>
         </div>
     @endforeach
-
-    <a hred="{{ route('books.create') }}">create</a>
 @endsection

@@ -1,5 +1,11 @@
 @extends('welcome')
 
 @section('content')
-    show
+    <div>
+        <h1>{{ $book->titolo}}</h1>
+    </div>
+
 @endsection
+
+
+
