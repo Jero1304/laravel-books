@@ -17,4 +17,8 @@ class Book extends Model
         'copie',
         'pagine'
     ];
+
+    public function genre(){
+        return $this->belongsTo(Genre::class);
+    }
 }
