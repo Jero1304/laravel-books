@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use App\Models\Book;
+use App\Models\Genre;
 
 class BookSeeder extends Seeder
 {
@@ -16,6 +17,7 @@ class BookSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+        $genre_ids = Genre::all()->pluck('id');
         for ($i = 0; $i < 250; $i++) {
             $book = new Book;
 
@@ -25,6 +27,7 @@ class BookSeeder extends Seeder
             $book->isbn=$faker->numerify('#############');
             $book->copie=$faker->numberBetween(100,1000);
             $book->pagine=$faker->numberBetween(100,1000);
+            $book->genre_id=$faker->randomElement($genre_ids);
 
             $book->save();
             
