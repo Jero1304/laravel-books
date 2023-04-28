@@ -68,4 +68,10 @@ class ControllerBook extends Controller
         $new_book= Book::create($validatedData);
         return to_route('books.show',$new_book);
     }
+
+    public function destroy(Book $book)
+    {
+        $book->delete();
+        return to_route('books.index');
+    }
 }

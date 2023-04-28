@@ -30,11 +30,11 @@
             </h1>
         </div>
 
-        <div class="container">
+        {{-- <div class="container">
             <div class="row">
                 index
             </div>
-        </div>
+        </div> --}}
 
         @yield('content')
     </main>
