@@ -15,7 +15,12 @@ class GenreController extends Controller
      */
     public function index()
     {
-        //
+        
+    }
+
+    public function welcome(){
+        $genres = Genre::pluck('name')->all();
+        return view('welcome', compact('genres'));
     }
 
     /**

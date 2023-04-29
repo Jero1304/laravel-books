@@ -30,12 +30,26 @@ create
                 @enderror
             </div>
 
+            {{-- GENERE --}}
+
             <div class="mb-3">
                 <label for="casa_editrice" class="form-label">casa_editrice</label>
                 <input type="text" name="casa_editrice" class="form-control @error('casa_editrice') is-invalid @enderror"
                     value="{{ old('casa_editrice') }}" id="casa_editrice">
                 {{-- errore title --}}
                 @error('casa_editrice')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="isbn" class="form-label">isbn</label>
+                <input type="text" name="isbn" class="form-control @error('isbn') is-invalid @enderror"
+                    value="{{ old('isbn') }}" id="isbn" >
+                {{-- errore title --}}
+                @error('isbn')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -66,17 +80,6 @@ create
                 @enderror
             </div>
 
-            <div class="mb-3">
-                <label for="isbn" class="form-label">isbn</label>
-                <input type="text" name="isbn" class="form-control @error('isbn') is-invalid @enderror"
-                    value="{{ old('isbn') }}" id="isbn" >
-                {{-- errore title --}}
-                @error('isbn')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
 
 
             <button type="submit" class="btn btn-success">Save</button>
