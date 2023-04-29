@@ -1,31 +1,55 @@
 @extends('welcome')
 
 @section('content')
-    <a href="{{ route('books.create') }}">create</a>
+    <div class="container py-5 px-0">
+        <div class="d-flex">
+            <a class="btn btn-primary" href="{{ route('books.create') }}">New Project</a>
+            <a class="btn btn-light border ms-4" href="#">Cestino</a>
+        </div>
+    </div>
+
+
+
+
     <div class="container">
-        <div class="row">
+        <div class="row gap-5">
 
             @foreach ($books as $book)
-                <div class="card" style="width: 18rem;">
+                <div class="card p-0" style="width: 18rem; height:auto;">
                     <div class="card-header">
-                        <h1>titolo:
+                        <h5 class="card-title py-3 fs-4">Titolo: <br>
                             <a href="{{ route('books.show', $book) }}">{{ $book->titolo }}</a>
-                        </h1>
-                        <form action="{{ route('books.destroy', $book) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <input type="submit" class="btn btn-danger btn-sm" value="Elimina">
-                        </form>
+                        </h5>
+                        <span class="card-text fs-5">
+                            Autore:<p class="fs-6">{{ $book->autore }}</p>
+                        </span>
+
+                        <span class="card-text fs-5">
+                            Genere:<p class="fs-6">{{ $book->genre->name }}</p>
+                        </span>
+    
+                        <div class="d-flex align-items-center justify-content-around py-4">
+                            <a class="btn btn-primary" href="{{ route('books.edit', $book) }}">Modifica</a>
+                            <a class="btn btn-primary" href="#" class="card-link">Elimina</a>
+                        </div>
                     </div>
+
                     <ul class="list-group list-group-flush">
-                        <li>id: {{ $book->id }}</li>
-                        <li>autore: {{ $book->autore }}</li>
-                        <li>casa_editrice: {{ $book->casa_editrice }}</li>
-                        <li>isbn: {{ $book->isbn }}</li>
-                        <li>copie: {{ $book->copie }}</li>
-                        <li>pagine: {{ $book->pagine }}</li>
+                        <li class="list-group-item">ID: {{ $book->id }}</li>
+                        <li class="list-group-item">Casa editrice:
+                            <p>{{ $book->casa_editrice }}</p>
+                        </li>
+                        <li class="list-group-item">ISBN:
+                            <p>{{ $book->isbn }}</p>
+                        </li>
+                        <li class="list-group-item">Copie:
+                            <p>{{ $book->copie }}</p>
+                        </li>
+                        <li class="list-group-item">Pagine:
+                            <p>{{ $book->pagine }}</p>
+                        </li>
                     </ul>
-                    <a href="{{ route('books.edit', $book) }}">Modifica</a>
+
                 </div>
             @endforeach
         </div>

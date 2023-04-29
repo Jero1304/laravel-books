@@ -65,13 +65,8 @@ class ControllerBook extends Controller
             'pagine' => 'numeric|min:1',
         ]);
 
-        $new_book= Book::create($validatedData);
-        return to_route('books.show',$new_book);
-    }
-
-    public function destroy(Book $book)
-    {
-        $book->delete();
-        return to_route('books.index');
+        $new_book = Book::create($validatedData);
+        return to_route('books.show', $new_book);
     }
 }
+
