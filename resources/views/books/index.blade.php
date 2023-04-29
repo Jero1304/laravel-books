@@ -25,7 +25,7 @@
                         </span>
 
                         <span class="card-text fs-5">
-                            Genere:<p class="fs-6">{{ $book->genre->name }}</p>
+                            Genere:<p class="fs-6">{{ $book->genre ? $book->genre->name : '-' }}</p>
                         </span>
     
                         <div class="d-flex align-items-center justify-content-around py-4">
