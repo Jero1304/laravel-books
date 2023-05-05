@@ -24,16 +24,6 @@
 
                     {{-- AUTORE --}}
                     <div class="mb-3 form-autore">
-                        {{-- <label for="autore" class="form-label">autore</label>
-                        <input type="text" name="autore" class="form-control @error('autore') is-invalid @enderror"
-                            value="{{ old('autore') }}" id="autore">
-                        {{-- errore title --}}
-                        {{-- @error('autore')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror --}}
-
                         <div class="">
                             @foreach ($authors as $author)
                                 <div class="form-check">
@@ -52,9 +42,6 @@
                             @enderror
                         </div>
                     </div>
-
-
-
 
                     {{-- CASA --}}
                     <div class="mb-3 form-casa">

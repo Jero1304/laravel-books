@@ -11,7 +11,6 @@ class ControllerBook extends Controller
 {
     public function index()
     {
-        // $authors = Author::orderBy('name', 'asc')->get();
         $books = Book::all();
 
 
@@ -27,14 +26,13 @@ class ControllerBook extends Controller
 
     public function show(Book $book)
     {
-        // dd($book);
         return view('books.show', compact('book'));
     }
 
     public function edit(Book $book)
     {
-
-        return view('books.edit', compact('book'));
+        $authors = Author::orderBy('name', 'asc')->get();
+        return view('books.edit', compact('book','authors'));
     }
 
 
@@ -44,24 +42,27 @@ class ControllerBook extends Controller
         $data = $request->all();
 
         $book->titolo = $data['titolo'];
-        $book->autore = $data['autore'];
+        // $book->autore = $data['autore'];
         $book->casa_editrice = $data['casa_editrice'];
         $book->isbn = $data['isbn'];
         $book->copie = $data['copie'];
         $book->pagine = $data['pagine'];
-
+        
         $book->save();
+
+        if (isset($data['authors'])) {
+            $book->authors()->sync($data['authors']);
+        } else {
+            $book->authors()->sync([]);
+        }
 
         return to_route('books.show', $book);
     }
 
     public function store(Request $request)
     {
-        // dd($request);
-
         $validateData = $request->validate([
             'titolo' => 'required|max:255',
-            // 'autore' => 'required|max:255',
             'casa_editrice' => 'max:200',
             'isbn' => 'required|max:13',
             'copie' => 'numeric|required|min:1',

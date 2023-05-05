@@ -24,17 +24,16 @@
                 </div>
 
                 <div class="mb-3 form-autore">
-                    <label for="autore" class="form-label">autore</label>
+                    {{-- <label for="autore" class="form-label">autore</label>
                     <input type="text" name="autore" class="form-control @error('autore') is-invalid @enderror"
                         value="{{ old('autore', $book->autore) }}" id="autore">
                     {{-- errore title --}}
-                    @error('autore')
+                    {{-- @error('autore')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
-                    @enderror
-
-                    @foreach ($authors as $author)
+                    @enderror --}}
+                    {{-- @foreach ($authors as $author)
                         <div class="form-check">
                             <input name="authors[]" class="form-check-input" type="checkbox" value="{{ $author->id }}"
                                 id="flexCheckDefault">
@@ -42,7 +41,30 @@
                                 {{ $author->name }}
                             </label>
                         </div>
-                    @endforeach
+                    @endforeach  --}}
+
+                    <div class="">
+                        @foreach ($authors as $author)
+                            <div class="form-check">
+                                <input @checked(in_array($author->id, old('authors', $book->getAuthorsIds()))) 
+                                    value="{{ $author->id }}" name="authors[]"
+                                    class="form-check-input" type="checkbox" value="{{ $author->id }}"
+                                    id="flexCheckDefault">
+
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    {{ $author->name }}
+                                </label>
+                            </div>
+                        @endforeach
+                        {{-- errore title --}}
+                        @error('authors')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+
 
 
 
@@ -62,26 +84,6 @@
                 </div>
 
                 {{-- GENERE --}}
-                {{-- <div class="mb-3 form-genere">
-                        <label for="genre-id" class="form-label">genre</label>
-
-                        <select class="form-select @error('genre_id') is-invalid @enderror" id="genre-id" name="genre_id"
-                            aria-label="Default select example">
-                            <option value="" selected>Seleziona categoria</option>
-                            @foreach ($genres as $genre)
-                                <option @selected(old('genre_id') == $genre->id) value="{{ $genre->id }}">{{ $genre->name }}
-                                </option>
-                            @endforeach
-                        </select> --}}
-
-                {{-- errore genre --}}
-                {{-- @error('genre_id')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div> --}}
-
                 <div class="mb-3 form-copie">
                     <label for="copie" class="form-label">copie</label>
                     <input type="text" name="copie" class="form-control @error('copie') is-invalid @enderror"
