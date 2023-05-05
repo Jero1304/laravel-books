@@ -49,7 +49,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="dropdown-item" href="#">Avventura</a>
+                                    <a class="dropdown-item" href="#">Avventura</a> 
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="#">Horror</a>
@@ -59,9 +59,6 @@
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="#">Animazione</a>
-                                </li>                   <li>
-                                    <a class="dropdown-item" href="#">Musical</a>
-                                </li>
                             </ul>
                         </li>
                     </ul>
