@@ -8,13 +8,22 @@ use Illuminate\Http\Request;
 
 class ControllerBook extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $genres = Genre::get()->pluck('name');
         $books = Book::all();
 
+        $trashed = $request->input('trashed');
 
-        return view('books.index', compact('books', 'genres'));
+        if ($trashed) {
+            $books = Book::onlyTrashed()->get();
+        } else {
+            $books = Book::all();
+        }
+
+        $num_of_trashed = Book::onlyTrashed()->count();
+
+        return view('books.index', compact('books', 'genres', 'num_of_trashed'));
     }
 
     public function create()
@@ -72,5 +81,23 @@ class ControllerBook extends Controller
 
         $new_book = Book::create($validatedData);
         return to_route('books.show', $new_book);
+    }
+
+    public function destroy(Book $book)
+    {
+        // $book->delete();
+        // return to_route('books.index');
+
+        if ($book->trashed()) {
+
+            // $post->tags()->detach();
+
+            $book->forceDelete(); // eliminazione def
+        } else {
+            $book->delete(); //eliminazione soft
+        }
+
+
+        return back();
     }
 }

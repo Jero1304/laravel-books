@@ -1,8 +1,11 @@
 @extends('welcome')
 
 @section('content')
-    edit
     <div class="container py-5">
+        <div class="py-5">
+            <a href="{{route('books.index')}}">Torna alla home</a>
+        </div>
+
         <form action="{{ route('books.update', $book) }}" method="post">
             @csrf
             @method('PUT')
