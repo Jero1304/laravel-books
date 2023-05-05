@@ -24,6 +24,7 @@
 
                     {{-- AUTORE --}}
                     <div class="mb-3 form-autore">
+<<<<<<< HEAD
                         <div class="">
                             @foreach ($authors as $author)
                                 <div class="form-check">
@@ -41,6 +42,17 @@
                                 </div>
                             @enderror
                         </div>
+=======
+                        <label for="autore" class="form-label">autore</label>
+                        <input type="text" name="autore" class="form-control @error('autore') is-invalid @enderror"
+                            value="{{ old('autore') }}" id="autore">
+                        {{-- errore title --}}
+                        @error('autore')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+>>>>>>> origin/HEAD
                     </div>
 
                     {{-- CASA --}}
@@ -59,9 +71,15 @@
 
                     {{-- GENERE --}}
                     <div class="mb-3 form-genere">
+<<<<<<< HEAD
                         <label for="genre_id" class="form-label">genre</label>
 
                         <select class="form-select @error('genre_id') is-invalid @enderror" id="genre_id" name="genre_id"
+=======
+                        <label for="genre-id" class="form-label">genre</label>
+
+                        <select class="form-select @error('genre_id') is-invalid @enderror" id="genre-id" name="genre_id"
+>>>>>>> origin/HEAD
                             aria-label="Default select example">
                             <option value="" selected>Seleziona categoria</option>
                             @foreach ($genres as $genre)

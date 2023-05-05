@@ -12,12 +12,7 @@
                 <div class="col">
                     <div class="card-body">
                         <h5 class="card-text">Titolo:<span> {{ $book->titolo }}</span></h5>
-                        <p class="card-text">Autore:
-                            @foreach ($book->authors as $author)
-                                <span> {{ $author->name }} -</span>
-                            @endforeach
-                        </p>
-
+                        <p class="card-text">Autore:<span> {{ $book->autore }}</span></p>
                         <p class="card-text">ID:<span> {{ $book->id }}</span></p>
                         <p class="card-text">Casa editrice:<span> {{ $book->casa_editrice }}</span></p>
                         <p class="card-text">ISBN:<span> {{ $book->isbn }}</span></p>

@@ -2,14 +2,16 @@
 
 @section('content')
     <div class="container py-5 px-0">
-        <div class="d-flex">
+        <div class="d-flex gap-3">
             <a class="btn btn-primary" href="{{ route('books.create') }}">New Project</a>
-            <a class="btn btn-light border ms-4" href="#">Cestino</a>
+
+          @if(request('trashed'))
+            <a class="btn btn-sm btn-light" href="{{ route('books.index') }}">Tutti i post</a>
+          @else
+            <a class="btn btn-sm btn-danger" href="{{ route('books.index',['trashed' => true]) }}">Cestino ({{ $num_of_trashed}})</a>
+          @endif
         </div>
     </div>
-
-
-
 
     <div class="container">
         <div class="row gap-5">
@@ -40,12 +42,16 @@
 
 
                         <span class="card-text fs-5">
-                            Genere:<p class="fs-6">{{ $book->genre->name }}</p>
+                            Genere:<p class="fs-6">{{ $book->genre ? $book->genre->name : '-' }}</p>
                         </span>
 
                         <div class="d-flex align-items-center justify-content-around py-4">
                             <a class="btn btn-primary" href="{{ route('books.edit', $book) }}">Modifica</a>
-                            <a class="btn btn-primary" href="#" class="card-link">Elimina</a>
+                            <form action="{{ route('books.destroy',$book) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" class="btn btn-danger" value="Elimina">
+                            </form>
                         </div>
                     </div>
 

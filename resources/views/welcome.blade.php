@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Laravel Books</title>
 
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -39,14 +39,8 @@
             <div class="container">
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
+                        <li class="nav-item ms-5">
                             <a class="nav-link active" aria-current="page" href="{{ route('books.index') }}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Home</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -55,13 +49,18 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="dropdown-item" href="#">Genere</a>
+                                    <a class="dropdown-item" href="#">Avventura</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">Genere</a>
+                                    <a class="dropdown-item" href="#">Horror</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">Genere</a>
+                                    <a class="dropdown-item" href="#">Fantasy</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Animazione</a>
+                                </li>                   <li>
+                                    <a class="dropdown-item" href="#">Musical</a>
                                 </li>
                             </ul>
                         </li>

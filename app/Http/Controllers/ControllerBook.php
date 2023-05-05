@@ -3,36 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 use App\Models\Author;
 use App\Models\Genre;
 
 class ControllerBook extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $genres = Genre::get()->pluck('name');
         $books = Book::all();
 
+        $data = [
+            'books' => $books
+        ];
 
-        return view('books.index', compact('books'));
+        return view('books.index', $data);
     }
 
     public function create()
     {
-        $authors = Author::orderBy('name', 'asc')->get();
-        $genres = Genre::orderBy('name', 'asc')->get();
-        return view('books.create', compact('authors','genres'));
+        return view('books.create');
     }
 
     public function show(Book $book)
     {
+        // dd($book);
         return view('books.show', compact('book'));
     }
 
     public function edit(Book $book)
     {
-        $authors = Author::orderBy('name', 'asc')->get();
-        return view('books.edit', compact('book','authors'));
+
+        return view('books.edit', compact('book'));
     }
 
 
@@ -78,3 +82,4 @@ class ControllerBook extends Controller
         return to_route('books.show', $new_book);
     }
 }
+
