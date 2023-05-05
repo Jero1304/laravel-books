@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Author;
 // use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Book extends Model
@@ -12,14 +13,20 @@ class Book extends Model
 
     protected $fillable = [
         'titolo',
-        'autore',
+        // 'autore',
         'casa_editrice',
         'isbn',
         'copie',
-        'pagine'
+        'pagine',
+        'genre_id',
+        // 'authors',
     ];
 
     public function genre(){
         return $this->belongsTo(Genre::class);
     }
+    public function authors(){
+        return $this->belongsToMany(Author::class);
+    }
+
 }

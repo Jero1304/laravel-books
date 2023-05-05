@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('authors', function (Blueprint $table) {
             $table->id();
-            $table->integer('pagine')->nullable();
-            $table->string('titolo',50);
-            // $table->string('autore',50);
-            $table->string('casa_editrice',50);
-            $table->string('isbn',13);
-            $table->integer('copie');
+            $table->string('name')->unique();
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('authors');
     }
 };

@@ -4,23 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use App\Models\Author;
+use App\Models\Genre;
 
 class ControllerBook extends Controller
 {
     public function index()
     {
+        // $authors = Author::orderBy('name', 'asc')->get();
         $books = Book::all();
 
-        $data = [
-            'books' => $books
-        ];
 
-        return view('books.index', $data);
+        return view('books.index', compact('books'));
     }
 
     public function create()
     {
-        return view('books.create');
+        $authors = Author::orderBy('name', 'asc')->get();
+        $genres = Genre::orderBy('name', 'asc')->get();
+        return view('books.create', compact('authors','genres'));
     }
 
     public function show(Book $book)
@@ -55,18 +57,23 @@ class ControllerBook extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
 
-        $validatedData = $request->validate([
+        $validateData = $request->validate([
             'titolo' => 'required|max:255',
-            'autore' => 'required|max:255',
+            // 'autore' => 'required|max:255',
             'casa_editrice' => 'max:200',
             'isbn' => 'required|max:13',
             'copie' => 'numeric|required|min:1',
             'pagine' => 'numeric|min:1',
+            'genre_id' => 'required|exists:genres,id',
+            'authors' => 'required|exists:authors,id'
         ]);
 
-        $new_book = Book::create($validatedData);
+        $new_book = Book::create($validateData);
+        if (isset($validateData['authors'])) {
+            $new_book->authors()->attach($validateData['authors']);
+        }
         return to_route('books.show', $new_book);
     }
 }
-

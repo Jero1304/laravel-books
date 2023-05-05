@@ -18,6 +18,7 @@
                         <p class="card-text">ISBN:<span> {{ $book->isbn }}</span></p>
                         <p class="card-text">Copie:<span> {{ $book->copie }}</span></p>
                         <p class="card-text">Pagine:<span> {{ $book->pagine }}</span></p>
+                        <p>{{ $book->genre->name}}</p>
                         <a class="btn btn-warning border" href="{{ route('books.edit', $book) }}">Modifica</a>
                     </div>
                 </div>
