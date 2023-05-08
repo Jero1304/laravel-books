@@ -11,10 +11,17 @@ class ControllerBook extends Controller
 {
     public function index(Request $request)
     {
-        // $genres = Genre::get()->pluck('name');
-        $books = Book::all();
+        $trashed = $request->input('trashed');
+
+        if ($trashed) {
+            $books = Book::onlyTrashed()->get();
+        } else {
+            $books = Book::all();
+        }
+
         $num_of_trashed = Book::onlyTrashed()->count();
-        
+
+
         return view('books.index', compact('books', 'num_of_trashed'));
     }
 
@@ -22,7 +29,7 @@ class ControllerBook extends Controller
     {
         $genres = Genre::all();
         $authors = Author::all();
-        return view('books.create', compact('authors','genres'));
+        return view('books.create', compact('authors', 'genres'));
     }
     public function show(Book $book)
     {
@@ -33,14 +40,13 @@ class ControllerBook extends Controller
     public function edit(Book $book)
     {
         $genres = Genre::get();
-        $authors = Author::orderBy('name','asc')->get();
-        return view('books.edit', compact('book','authors','genres'));
+        $authors = Author::orderBy('name', 'asc')->get();
+        return view('books.edit', compact('book', 'authors', 'genres'));
     }
 
 
     public function update(Request $request, Book $book)
     {
-
         $data = $request->all();
 
         $book->titolo = $data['titolo'];
@@ -48,7 +54,7 @@ class ControllerBook extends Controller
         $book->isbn = $data['isbn'];
         $book->copie = $data['copie'];
         $book->pagine = $data['pagine'];
-        
+
         $book->save();
 
         if (isset($data['authors'])) {
@@ -78,5 +84,14 @@ class ControllerBook extends Controller
         }
         return to_route('books.show', $new_book);
     }
-}
 
+    public function destroy(Book $book)
+    {
+        if ($book->trashed()) {
+            $book->forceDelete(); // eliminazione def
+        } else {
+            $book->delete(); //eliminazione soft
+        }
+        return back();
+    }
+}

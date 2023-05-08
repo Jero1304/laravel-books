@@ -29,7 +29,6 @@
                             <p class="fs-6">
                             <ul>
                                 @forelse ($book->authors as $author)
-                                    {{-- <li>{{ $book }}</li> --}}
                                     <li>{{ $author->name }}</li>
                                 @empty
                                 @endforelse
@@ -37,14 +36,14 @@
                             </p>
                         </span>
 
-
-
                         <span class="card-text fs-5">
                             Genere:<p class="fs-6">{{ $book->genre ? $book->genre->name : '-' }}</p>
                         </span>
 
                         <div class="d-flex align-items-center justify-content-around py-4">
+
                             <a class="btn btn-primary" href="{{ route('books.edit', $book) }}">Modifica</a>
+
                             <form action="{{ route('books.destroy', $book) }}" method="POST">
                                 @csrf
                                 @method('DELETE')

@@ -17,18 +17,18 @@ use App\Http\Controllers\ControllerBook;
 
 
 
-// Route::get('/',[ControllerBook::class,'index'])->name('books.index');
-// Route::get('/books',[ControllerBook::class,'index'])->name('books.index');
+Route::get('/',[ControllerBook::class,'index'])->name('books.index');
+Route::get('/books',[ControllerBook::class,'index'])->name('books.index');
 
-// Route::get('/books/create',[ControllerBook::class,'create'])->name('books.create');
-// Route::get('/books/{book}',[ControllerBook::class,'show'])->name('books.show');
-// Route::post('/books',[ControllerBook::class,'store'])->name('books.store');
-// Route::get('/books/{book}/edit',[ControllerBook::class,'edit'])->name('books.edit');
+Route::get('/books/create',[ControllerBook::class,'create'])->name('books.create');
+Route::get('/books/{book}',[ControllerBook::class,'show'])->name('books.show');
+Route::post('/books',[ControllerBook::class,'store'])->name('books.store');
+Route::get('/books/{book}/edit',[ControllerBook::class,'edit'])->name('books.edit');
 
-// Route::put('/books/{book}',[ControllerBook::class,'update'])->name('books.update');
-// Route::delete('/books/{book}',[ControllerBook::class,'destroy'])->name('books.destroy');
+Route::put('/books/{book}',[ControllerBook::class,'update'])->name('books.update');
+Route::delete('/books/{book}',[ControllerBook::class,'destroy'])->name('books.destroy')->withTrashed();
 
 
 
-Route::resource('books', ControllerBook::class);
+// Route::resource('books', ControllerBook::class);
 

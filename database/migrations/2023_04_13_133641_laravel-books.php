@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('casa_editrice',50);
             $table->string('isbn',13);
             $table->integer('copie');
-            // $table->inte
             $table->softDeletes()->nullable();
             $table->timestamps();
         });
