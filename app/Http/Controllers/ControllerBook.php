@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Genre;
 use Illuminate\Http\Request;
-use App\Models\Author;
-use App\Models\Genre;
+// use App\Models\Author;
+// use App\Models\Genre;
 
 class ControllerBook extends Controller
 {
