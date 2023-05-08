@@ -13,14 +13,12 @@
                     <div class="card-body">
                         <h5 class="card-text">Titolo:<span> {{ $book->titolo }}</span></h5>
                         <p class="card-text">Autore:<span> {{ $book->autore }}</span></p>
-                        {{-- non si aggiorna il valore di genre --}}
-                        <p class="card-text">Genere:<span> {{ $book->genre->name}}</span></p>
-                        
-                        <p class="card-text">ID:<span> {{ $book->genre_id}}</span></p>
+                        <p class="card-text">ID:<span> {{ $book->id }}</span></p>
                         <p class="card-text">Casa editrice:<span> {{ $book->casa_editrice }}</span></p>
                         <p class="card-text">ISBN:<span> {{ $book->isbn }}</span></p>
                         <p class="card-text">Copie:<span> {{ $book->copie }}</span></p>
                         <p class="card-text">Pagine:<span> {{ $book->pagine }}</span></p>
+                        <p>{{ $book->genre->name }}</p>
                         <a class="btn btn-warning border" href="{{ route('books.edit', $book) }}">Modifica</a>
                     </div>
                 </div>
