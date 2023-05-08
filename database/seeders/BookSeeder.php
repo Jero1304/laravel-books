@@ -25,7 +25,6 @@ class BookSeeder extends Seeder
             $book = new Book;
 
             $book->titolo=$faker->unique()->text(50);
-            // $book->autore=$faker->name(30);
             $book->casa_editrice=$faker->text(50);
             $book->isbn=$faker->numerify('#############');
             $book->copie=$faker->numberBetween(100,1000);
@@ -34,7 +33,7 @@ class BookSeeder extends Seeder
             
             $book->save();
 
-            $book->authors()->attach($faker->randomElements($authors_ids,rand(0,5)));
+            $book->authors()->attach($faker->randomElements($authors_ids,rand(1,3)));
             
         }
     }

@@ -5,11 +5,12 @@
         <div class="d-flex gap-3">
             <a class="btn btn-primary" href="{{ route('books.create') }}">New Project</a>
 
-          @if(request('trashed'))
-            <a class="btn btn-sm btn-light" href="{{ route('books.index') }}">Tutti i post</a>
-          @else
-            <a class="btn btn-sm btn-danger" href="{{ route('books.index',['trashed' => true]) }}">Cestino ({{ $num_of_trashed}})</a>
-          @endif
+            @if (request('trashed'))
+                <a class="btn btn-sm btn-light" href="{{ route('books.index') }}">Tutti i post</a>
+            @else
+                <a class="btn btn-sm btn-danger" href="{{ route('books.index', ['trashed' => true]) }}">Cestino
+                    ({{ $num_of_trashed }})</a>
+            @endif
         </div>
     </div>
 
@@ -22,16 +23,13 @@
                         <h5 class="card-title py-3 fs-4">Titolo: <br>
                             <a href="{{ route('books.show', $book) }}">{{ $book->titolo }}</a>
                         </h5>
-                        {{-- <span class="card-text fs-5">
-                            Autore:<p class="fs-6">{{ $book->autore }}</p>
-                        </span> --}}
 
                         <span class="card-text fs-5">
                             Autore:
                             <p class="fs-6">
                             <ul>
                                 @forelse ($book->authors as $author)
-                                    {{-- <li>{{ $book}}</li> --}}
+                                    {{-- <li>{{ $book }}</li> --}}
                                     <li>{{ $author->name }}</li>
                                 @empty
                                 @endforelse
@@ -47,7 +45,7 @@
 
                         <div class="d-flex align-items-center justify-content-around py-4">
                             <a class="btn btn-primary" href="{{ route('books.edit', $book) }}">Modifica</a>
-                            <form action="{{ route('books.destroy',$book) }}" method="POST">
+                            <form action="{{ route('books.destroy', $book) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <input type="submit" class="btn btn-danger" value="Elimina">

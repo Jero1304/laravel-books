@@ -5,26 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Genre;
 use Illuminate\Http\Request;
-// use App\Models\Author;
-// use App\Models\Genre;
+use App\Models\Author;
 
 class ControllerBook extends Controller
 {
     public function index(Request $request)
     {
-        $genres = Genre::get()->pluck('name');
+        // $genres = Genre::get()->pluck('name');
         $books = Book::all();
-
-        $data = [
-            'books' => $books
-        ];
-
-        return view('books.index', $data);
+        $num_of_trashed = Book::onlyTrashed()->count();
+        
+        return view('books.index', compact('books', 'num_of_trashed'));
     }
 
     public function create()
     {
-        return view('books.create');
+        $genres = Genre::all();
+        $authors = Author::all();
+        return view('books.create', compact('authors','genres'));
     }
     public function show(Book $book)
     {
@@ -34,8 +32,9 @@ class ControllerBook extends Controller
 
     public function edit(Book $book)
     {
-
-        return view('books.edit', compact('book'));
+        $genres = Genre::get();
+        $authors = Author::orderBy('name','asc')->get();
+        return view('books.edit', compact('book','authors','genres'));
     }
 
 
@@ -45,7 +44,6 @@ class ControllerBook extends Controller
         $data = $request->all();
 
         $book->titolo = $data['titolo'];
-        // $book->autore = $data['autore'];
         $book->casa_editrice = $data['casa_editrice'];
         $book->isbn = $data['isbn'];
         $book->copie = $data['copie'];

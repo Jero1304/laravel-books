@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->integer('pagine')->nullable();
             $table->string('titolo',50);
-            // $table->string('autore',50);
             $table->string('casa_editrice',50);
             $table->string('isbn',13);
             $table->integer('copie');
+            // $table->inte
             $table->softDeletes()->nullable();
             $table->timestamps();
         });
