@@ -32,7 +32,6 @@ class ControllerBook extends Controller
 
         return view('books.create', compact('genres'));
     }
-
     public function show(Book $book)
     {
         $genres = Genre::get()->pluck('name');
