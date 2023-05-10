@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('author_book', function (Blueprint $table) {
             $table->unsignedBigInteger('book_id');
-            $table->foreign('book_id')->references('id')->on('books');
+            $table->foreign('book_id')->references('id')->on('books')->delete('CASCADE')->onUpdate('CASCADE');
             $table->unsignedBigInteger('author_id');
-            $table->foreign('author_id')->references('id')->on('authors');
+            $table->foreign('author_id')->references('id')->on('authors')->delete('CASCADE')->onUpdate('CASCADE');
             
         });
     }
