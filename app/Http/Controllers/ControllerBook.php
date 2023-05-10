@@ -85,6 +85,15 @@ class ControllerBook extends Controller
         return to_route('books.show', $new_book);
     }
 
+    public function restore(Request $request, Book $book)
+    {
+        if ($book->trashed()) {
+            $book->restore();
+        }
+
+        return bacK();
+    }
+    
     public function destroy(Book $book)
     {
         if ($book->trashed()) {

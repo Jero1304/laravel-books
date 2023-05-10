@@ -41,14 +41,23 @@
                         </span>
 
                         <div class="d-flex align-items-center justify-content-around py-4">
-
+                            {{-- MODIFICA --}}
                             <a class="btn btn-primary" href="{{ route('books.edit', $book) }}">Modifica</a>
-
+                            {{-- ELIMINA --}}
                             <form action="{{ route('books.destroy', $book) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <input type="submit" class="btn btn-danger" value="Elimina">
                             </form>
+                            {{-- RIPRISTINA --}}
+                            @if ($book->trashed())
+                                <form action="{{ route('books.restore', $book) }}" method='POST'>
+                                    @csrf
+                                    <input type="submit" class="btn btn-success" value='Ripristina'>
+                                </form>
+                            @endif
+
+
                         </div>
                     </div>
 

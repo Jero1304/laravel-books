@@ -27,8 +27,8 @@ Route::get('/books/{book}/edit',[ControllerBook::class,'edit'])->name('books.edi
 
 Route::put('/books/{book}',[ControllerBook::class,'update'])->name('books.update');
 Route::delete('/books/{book}',[ControllerBook::class,'destroy'])->name('books.destroy')->withTrashed();
+Route::post('/books/{book}/restore', [ControllerBook::class, 'restore'])->name('books.restore')->withTrashed();
 
 
-
-// Route::resource('books', ControllerBook::class);
+// Route::resource('books', ControllerBook::class)->withTrashed();
 
