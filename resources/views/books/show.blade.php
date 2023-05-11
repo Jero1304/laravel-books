@@ -13,7 +13,6 @@
                         <h5 class="card-text">Titolo:<span> {{ $book->titolo }}</span></h5>
                         <p class="card-text">Autore:<span>
                                 @forelse ($book->authors as $author)
-                                    {{-- <li>{{ $book }}</li> --}}
                                     {{ $author->name }} -
                                 @empty
                                 @endforelse
@@ -28,12 +27,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-
-        <div>
-            <h1></h1>
-
         </div>
     </div>
 @endsection

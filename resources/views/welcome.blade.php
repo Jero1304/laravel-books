@@ -31,9 +31,7 @@
                         <img class="rounded-pill"
                             src="https://i.pinimg.com/originals/5f/fb/de/5ffbdeceb84323decd76084b2efca958.png">
                     </a>
-
                 </div>
-
             </div>
 
             <div class="container">

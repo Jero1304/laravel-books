@@ -1,35 +1,28 @@
 .box-form {
     border: 2px solid rgba(44, 247, 105, 0.6);
-    width: 800px;
+    max-width: 800px;
     padding: 30px 50px;
     border-radius: 20px;
+    margin: 0 auto;
     background-color: rgba(52, 248, 68, 0.2);
 
-    :first-child {
-        font-size: 24px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-
-    }
-
-    .form-titolo,
-    .form-autore,
+    .titolo,
     .form-casa {
-        width: 350px;
-    }
-
-    .form-genere,
-    .form-isbn {
         width: 300px;
     }
 
-    .form-copie,
-    .form-pagine,
+    .form-genere,
+    .form-autore {
+        max-width: 400px;
+    }
+
     .form-isbn {
         width: 200px;
+    }
+
+    .form-copie,
+    .form-pagine {
+        width: 150px;
     }
 
 }

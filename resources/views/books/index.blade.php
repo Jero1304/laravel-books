@@ -26,38 +26,40 @@
 
                         <span class="card-text fs-5">
                             Autore:
-                            <p class="fs-6">
-                            <ul>
+                            <div class="author">
                                 @forelse ($book->authors as $author)
-                                    <li>{{ $author->name }}</li>
+                                    <p class="badge bg-success rounded-pill">{{ $author->name }}</p>
                                 @empty
                                 @endforelse
-                            </ul>
-                            </p>
+                            </div>
                         </span>
 
-                        <span class="card-text fs-5">
-                            Genere:<p class="fs-6">{{ $book->genre ? $book->genre->name : '-' }}</p>
-                        </span>
+                        <p class="card-text fs-5">Genere:
+                            <p class="badge bg-warning rounded-pill fs-6">
+                                {{ $book->genre ? $book->genre->name : '-' }}
+                            </p>
+                        </p>
 
                         <div class="d-flex align-items-center justify-content-around py-4">
-                            {{-- MODIFICA --}}
-                            <a class="btn btn-primary" href="{{ route('books.edit', $book) }}">Modifica</a>
+                            @if (request('trashed'))
+                                {{-- RIPRISTINA --}}
+                                @if ($book->trashed())
+                                    <form action="{{ route('books.restore', $book) }}" method='POST'>
+                                        @csrf
+                                        <input type="submit" class="btn btn-success" value='Ripristina'>
+                                    </form>
+                                @endif
+                            @else
+                                {{-- MODIFICA --}}
+                                <a class="btn btn-primary" href="{{ route('books.edit', $book) }}">Modifica</a>
+                            @endif
+
                             {{-- ELIMINA --}}
                             <form action="{{ route('books.destroy', $book) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <input type="submit" class="btn btn-danger" value="Elimina">
                             </form>
-                            {{-- RIPRISTINA --}}
-                            @if ($book->trashed())
-                                <form action="{{ route('books.restore', $book) }}" method='POST'>
-                                    @csrf
-                                    <input type="submit" class="btn btn-success" value='Ripristina'>
-                                </form>
-                            @endif
-
-
                         </div>
                     </div>
 
